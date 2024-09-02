@@ -15,11 +15,18 @@ namespace PGLab
         /// </summary>
         public override void OnInitializeMelon()
         {
-            MelonLogger.Msg("Making BONELAB PG...");
-            NoBlood.NoBloodPatches.ApplyPatches(this);
-            Softbody.BreastPatches.ApplyPatches(this);
-            Softbody.ButtPatches.ApplyPatches(this);
-            MelonLogger.Msg("Finished making BONELAB PG.");
+            try
+            {
+                MelonLogger.Msg("Making BONELAB PG...");
+                NoBlood.NoBloodPatches.ApplyPatches(this);
+                Softbody.BreastPatches.ApplyPatches(this);
+                Softbody.ButtPatches.ApplyPatches(this);
+                MelonLogger.Msg("Finished making BONELAB PG.");
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Error($"An error occurred during initialization: {ex.Message}");
+            }
         }
     }
 }

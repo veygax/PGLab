@@ -26,6 +26,9 @@ namespace PGLab.Softbody
             var harmony = mod.HarmonyInstance;
 
             var method1 = typeof(Avatar).GetMethod("GenerateBreastMesh");
+            var method2 = typeof(PhysSoftBody).GetMethod("CalibrateTorsoColliders");
+            var method3 = typeof(PhysSoftBody).GetMethod("CalibrateJoints");
+            var method4 = typeof(PhysSoftBody).GetMethod("UpdateKinematicBridges");
             var patchMethod = typeof(BreastPatches).GetMethod(nameof(DontRunThis), BindingFlags.Static | BindingFlags.Public);
 
             if (method1 != null && patchMethod != null)
@@ -41,6 +44,48 @@ namespace PGLab.Softbody
                 MelonLogger.Error("Failed to patch Avatar.GenerateBreastMesh method: method or patchMethod is null.");
 #endif
             }
+
+            if (method2 != null && patchMethod != null)
+            {
+                harmony.Patch(method2, new HarmonyMethod(patchMethod));
+#if DEBUG
+                MelonLogger.Msg("Patched PhysSoftBody.CalibrateTorsoColliders method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to patch PhysSoftBody.CalibrateTorsoColliders method: method or patchMethod is null.");
+#endif
+            }
+
+            if (method3 != null && patchMethod != null)
+            {
+                harmony.Patch(method3, new HarmonyMethod(patchMethod));
+#if DEBUG
+                MelonLogger.Msg("Patched PhysSoftBody.CalibrateJoints method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to patch PhysSoftBody.CalibrateJoints method: method or patchMethod is null.");
+#endif
+            }
+
+            if (method4 != null && patchMethod != null)
+            {
+                harmony.Patch(method4, new HarmonyMethod(patchMethod));
+#if DEBUG
+                MelonLogger.Msg("Patched PhysSoftBody.UpdateKinematicBridges method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to patch PhysSoftBody.UpdateKinematicBridges method: method or patchMethod is null.");
+#endif
+            }
         }
 
         /// <summary>  
@@ -52,6 +97,9 @@ namespace PGLab.Softbody
             var harmony = mod.HarmonyInstance;
 
             var method1 = typeof(Avatar).GetMethod("GenerateBreastMesh");
+            var method2 = typeof(PhysSoftBody).GetMethod("CalibrateTorsoColliders");
+            var method3 = typeof(PhysSoftBody).GetMethod("CalibrateJoints");
+            var method4 = typeof(PhysSoftBody).GetMethod("UpdateKinematicBridges");
 
             if (method1 != null)
             {
@@ -66,6 +114,49 @@ namespace PGLab.Softbody
                 MelonLogger.Error("Failed to unpatch Avatar.GenerateBreastMesh method: method is null.");
 #endif
             }
+
+            if (method2 != null)
+            {
+                harmony.Unpatch(method2, HarmonyPatchType.Prefix);
+#if DEBUG
+                MelonLogger.Msg("Unpatched PhysSoftBody.CalibrateTorsoColliders method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to unpatch PhysSoftBody.CalibrateTorsoColliders method: method is null.");
+#endif
+            }
+
+            if (method3 != null)
+            {
+                harmony.Unpatch(method3, HarmonyPatchType.Prefix);
+#if DEBUG
+                MelonLogger.Msg("Unpatched PhysSoftBody.CalibrateJoints method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to unpatch PhysSoftBody.CalibrateJoints method: method is null.");
+#endif
+            }
+
+            if (method4 != null)
+            {
+                harmony.Unpatch(method4, HarmonyPatchType.Prefix);
+#if DEBUG
+                MelonLogger.Msg("Unpatched PhysSoftBody.UpdateKinematicBridges method.");
+#endif
+            }
+            else
+            {
+#if DEBUG
+                MelonLogger.Error("Failed to unpatch PhysSoftBody.UpdateKinematicBridges method: method is null.");
+#endif
+            }
+
         }
 
         /// <summary>  
